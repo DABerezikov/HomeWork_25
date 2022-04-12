@@ -1,0 +1,96 @@
+﻿<Window x:Class="HomeWork_25.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HomeWork_25"
+        mc:Ignorable="d"
+        Title="Bank A" Height="600" Width="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="189*"/>
+            <RowDefinition Height="103*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="500*"/>
+            <ColumnDefinition Width="500*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="Clients" Grid.Column="1" ItemsSource="{Binding}" SelectionChanged="Clients_SelectionChanged" HorizontalContentAlignment="Stretch" />
+        <ComboBox Name="ChoiceAccount" Margin="11,5,314,173" Grid.Column="1" Grid.Row="1" SelectionChanged="Clients_SelectionChanged" FontSize="11">
+            <ComboBoxItem Content="Депозит"></ComboBoxItem>
+
+        </ComboBox>
+        <DataGrid x:Name="Transfer" Grid.Column="2" ItemsSource="{Binding}" SelectionChanged="Transfer_SelectionChanged" HorizontalContentAlignment="Stretch" />
+
+        <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,48,0,0" Height="18" Width="122">
+            <TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="Дата открытия"  Width="120" TextAlignment="Center"/>
+        </Border>
+        <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="185,48,0,0" Height="18" Width="122">
+            <TextBlock Grid.Column="1"  Grid.Row="1" TextWrapping="Wrap" Text="Дата пополнения" Width="120" TextAlignment="Center"/>
+        </Border>
+        <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="185,78,0,0" Height="22" Width="122">
+            <TextBlock x:Name="RefillDateBox" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap"   Width="120" TextAlignment="Center" Height="20"/>
+        </Border>
+        <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="360,48,0,0" Height="18" Width="122">
+            <TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="Дата закрытия" Width="120" TextAlignment="Center"/>
+        </Border>
+        <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="360,78,0,0" Height="20" Width="122">
+            <TextBlock x:Name="ClosingDateBox" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap"  Width="120" TextAlignment="Center"/>
+        </Border>
+        <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="11,108,0,0" Height="18" Width="122">
+            <TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="Сумма на счете" Width="120" TextAlignment="Center"/>
+        </Border>
+        <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="11,135,0,0" Height="22" Width="122">
+            <TextBlock x:Name="AmmountBox" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap"   Width="120" TextAlignment="Center" Height="20"/>
+        </Border>
+        <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="185,108,0,0" Height="18" Width="122">
+            <TextBlock Grid.Column="1"  Grid.Row="1" TextWrapping="Wrap" Text="Доход"  Width="120" TextAlignment="Center"/>
+        </Border>
+        <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="185,135,0,0" Height="22" Width="122">
+            <TextBlock x:Name="InterestBox" Grid.Column="1"  Grid.Row="1" TextWrapping="Wrap"   Width="120" TextAlignment="Center" Height="20"/>
+        </Border>
+        <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,78,0,0" Height="22" Width="122">
+            <TextBlock x:Name="OpenDateBox" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap"  Width="120" TextAlignment="Center" Height="20"  />
+        </Border>
+        <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="360,108,0,0" Height="18" Width="122">
+            <TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="Сумма" Width="120" TextAlignment="Center"/>
+        </Border>
+        <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="360,135,0,0" Height="22" Width="122">
+            <TextBox x:Name="RefillBox" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap"  Width="120" TextAlignment="Center" Height="20"/>
+        </Border>
+        <Button x:Name="TransferButton" Grid.Column="1" Content="Перевести" HorizontalAlignment="Left" Margin="360,174,0,0" Grid.Row="1"
+                VerticalAlignment="Top" Width="122" Visibility="Collapsed" Height="22" Click="TransferButton_Click"/>
+        <Button x:Name="RefillButton" Grid.Column="1" Content="Пополнить" HorizontalAlignment="Left" Margin="360,174,0,0" Grid.Row="1"
+                VerticalAlignment="Top" Width="122" Click="RefillButton_Click" Height="22"/>
+        
+        <Button x:Name="OpenAccount" Grid.Column="1" Content="Открыть счет" HorizontalAlignment="Left" Margin="185,174,0,0" Grid.Row="1" VerticalAlignment="Top" Width="122" Height="22" Visibility="Collapsed" Click="OpenAccount_Click"/>
+        <Button x:Name="ClientAdd" Content="Добавить клиента" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="180" Click="ClientAdd_Click"/>
+        <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,40,0,0" Height="22" Width="180">
+            <TextBox x:Name="ClientName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Введите имя клиента"  Width="180" TextAlignment="Center" VerticalAlignment="Stretch"
+                     GotFocus="TextBox_GotFocus" SelectionChanged="TextBox_SelectionChanged"/>
+        </Border>
+        <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,70,0,0" Height="22" Width="180">
+            <TextBox x:Name="ClientAmount" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Сумма зачисления"  Width="180" TextAlignment="Center" VerticalAlignment="Stretch"
+                     GotFocus="TextBox_GotFocus" SelectionChanged="TextBox_SelectionChanged"  />
+        </Border>
+        <ComboBox x:Name="ClientType" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Width="180">
+            <ComboBoxItem Content="Частное лицо"/>
+            <ComboBoxItem Content="Юридическое лицо"/>
+            <ComboBoxItem Content="VIP клиент"/>
+        </ComboBox>
+        <Button x:Name="ClientDelete" Content="Удалить клиента" HorizontalAlignment="Center" Margin="0,130,0,0" VerticalAlignment="Top" Width="180" 
+                Visibility="Hidden" Click="ClientDelete_Click"/>
+        <Button x:Name="CloseAccount" Content="Закрыть счет" HorizontalAlignment="Center" Margin="0,130,0,0" VerticalAlignment="Top" Width="180" Visibility="Collapsed" Click="CloseAccount_Click"/>
+        <Button x:Name="OpenTransfer" Content="Осуществить перевод" HorizontalAlignment="Center" Margin="0,160,0,0" VerticalAlignment="Top" Width="180"
+                Visibility="Collapsed" Click="OpenTransfer_Click"/>
+        <Button x:Name="CancelTransfer" Content="Отменить перевод" HorizontalAlignment="Center" Margin="0,160,0,0" VerticalAlignment="Top" Width="180"
+                Visibility="Collapsed" Click="CancelTransfer_Click"/>
+
+
+
+
+
+
+    </Grid>
+</Window>
